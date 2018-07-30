@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Include AngluarJS library -->
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+ 
+ <!-- Include firebase -->
+	<script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+	
+	<!-- include jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Include UI Bootstrap library -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.4/ui-bootstrap-tpls.min.js"></script>
+ 
+ <script>
+  // Initialize Firebase
+  const config = {
+    apiKey: "AIzaSyCZS5qCWuiGWvsJPxfsRzqpALMdgKc8fF8",
+    authDomain: "livsuiteform.firebaseapp.com",
+    databaseURL: "https://livsuiteform.firebaseio.com",
+    projectId: "livsuiteform",
+    storageBucket: "livsuiteform.appspot.com",
+    messagingSenderId: "203552205914"
+  };
+  firebase.initializeApp(config);
+  console.log("firebase initialized")
+  </script>
+ 
+</head>
+
+<body>
+
+    <h2>
+      Here is your Access QR
+    </h2>
+    <div id=yoho></div>
+    <input type='checkbox' name='emailText' value='email'>Email me this QR<br>
+    <input type='checkbox'vname='emailText' value='text'>Text me this QR<br>
+    <button class='close'>Close</button>
+
+ 
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<!-- Include AngluarJS library -->
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+ 
+ <!-- Include firebase -->
+	<script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+	
+	<!-- include jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Include UI Bootstrap library -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.4/ui-bootstrap-tpls.min.js"></script>
+ <script>
+  // Initialize Firebase
+  const config = {
+    apiKey: "AIzaSyCZS5qCWuiGWvsJPxfsRzqpALMdgKc8fF8",
+    authDomain: "livsuiteform.firebaseapp.com",
+    databaseURL: "https://livsuiteform.firebaseio.com",
+    projectId: "livsuiteform",
+    storageBucket: "livsuiteform.appspot.com",
+    messagingSenderId: "203552205914"
+  };
+  firebase.initializeApp(config);
+  console.log("firebase initialized")
+          // Detect Login
+          const auth = firebse.auth();
+  firebase.auth().signOut();
+ </script>
+
+ <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-functions.js"></script>
+
+</head>
+
+<body>
+
+
+<div class='popup-overlay'>
+
+	<div id='popup1' class='popup-content'>
+      <div class="container">
+        <h2>
+          Log in to your LivSuite account to recieve an access QR for this class
+        </h2>
+        <p>
+          DISCLAIMER: This QR is only valid for the person on the account and for the class selected
+        </p>
+		<input id="userEmail" type="email" placeholder="Email">
+		<input id="userPassword" type="password" placeholder="Password">
+		
+		<button id="blogin" class="log-in" onclick=trylogin();>Register</button>
+		<button id="bsignup" onclick="window.location.href='https://www.livsuite.info/create-account'">Create Account</button>
+        
+        
+	</div>
+	
+     
+        
+      
+	</div>
+</div>
+
+<script>
+function trylogin() {
+       console.log("login attempted")
+       
+    
+
+   auth.signOut();
+  
+  	
+  	//TODO make sure its an email entered
+
+  	
+  // Get login elements by id
+ 
+  const userEmail = document.getElementById('userEmail');
+  const userPassword = document.getElementById('userPassword');
+  const blogin = document.getElementById('blogin');
+  const bsignup = document.getElementById('bsignup');
+  console.log("ui elements identified");
+  
+    const email = userEmail.value;
+  	const pass = userPassword.value;
+  //	const auth = firebase.auth();
+  	
+  	const promise = auth.signInWithEmailAndPassword(email, pass);
+  
+  	promise.catch(e => {
+      console.log("faulty login");
+      var node = document.createElement('p');
+      var eMessage = document.createTextNode('ERROR: Account not recognized');
+      node.appendChild(eMessage);
+      var popup = document.getElementById('popup1');
+      popup.appendChild(node);
+      console.log("message appended");
+    }); //end error catch
+    console.log(promise);
+
+      
+        console.log("it ran");
+       // firebase.auth().onAuthStateChanged(firebaseUser => {
+      promise.then(function() {
+       // if (firebaseUser) {
+           
+
+    console.log("new popup should be open");
+      //$(".popup-overlay, .popup-content").removeClass("active");
+      //$(".popup-overlay2, .popup-content2").addClass("active");
+      geturl(email);
+      location.href = '/qrdisplay';
+    
+ 
+        //} //end if statement
+        }); //end on auth state changed
+      
+    	
+
+
+      }
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" >
+ src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js">
+</script>
+
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCZS5qCWuiGWvsJPxfsRzqpALMdgKc8fF8",
+    authDomain: "livsuiteform.firebaseapp.com",
+    databaseURL: "https://livsuiteform.firebaseio.com",
+    projectId: "livsuiteform",
+    storageBucket: "livsuiteform.appspot.com",
+    messagingSenderId: "203552205914"
+  };
+  firebase.initializeApp(config);
+</script>
+
+<!-- Include AngluarJS library -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<!-- Include UI Bootstrap library -->
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.4/ui-bootstrap-tpls.min.js"></script>
+</head>
+
+<body ng-app='PopupDemo'>
+<div ng-controller="PopupDemoCont">
+<h2 class="text-center">Angularjs-Popup</h2>
+<button ng-click="open()" class="btn btn-warning">Simple Popup</button>
+</div>
+
+<script>
+angular.module('PopupDemo', ['ui.bootstrap']);
+
+ angular.module('PopupDemo').controller('PopupDemoCont', ['$scope','$modal',function ($scope, $modal) {
+$scope.open = function () {
+console.log('opening pop up');
+var modalInstance = $modal.open({
+templateUrl: '/testio/src/window.html',
+});
+}
+}]);
+
+angular.module('PopupDemo').controller('PopupCont', ['$scope','$modalInstance',function ($scope, $modalInstance) {
+$scope.close = function () {
+$modalInstance.dismiss('cancel');
+};
+}]);
+</script>
+
+</body>
+
+</html>

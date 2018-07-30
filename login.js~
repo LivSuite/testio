@@ -1,0 +1,67 @@
+
+function trylogin() {
+       console.log("login attempted")
+       
+        const config = {
+    apiKey: "AIzaSyCZS5qCWuiGWvsJPxfsRzqpALMdgKc8fF8",
+    authDomain: "livsuiteform.firebaseapp.com",
+    databaseURL: "https://livsuiteform.firebaseio.com",
+    projectId: "livsuiteform",
+    storageBucket: "livsuiteform.appspot.com",
+    messagingSenderId: "203552205914"
+  };
+  firebase.initializeApp(config);
+  
+
+firebase.auth().signOut();
+  
+  	
+  	//TODO make sure its an email entered
+
+  	
+  // Get login elements by id
+ 
+  const userEmail = document.getElementById('userEmail');
+  const userPassword = document.getElementById('userPassword');
+  const blogin = document.getElementById('blogin');
+  const bsignup = document.getElementById('bsignup');
+  console.log("ui elements identified");
+  
+    const email = userEmail.value;
+  	const pass = userPassword.value;
+  	const auth = firebase.auth();
+  	
+  	const promise = auth.signInWithEmailAndPassword(email, pass);
+  
+  	promise.catch(e => {
+      console.log("faulty login");
+      var node = document.createElement('p');
+      var eMessage = document.createTextNode('ERROR: Account not recognized');
+      node.appendChild(eMessage);
+      var popup = document.getElementById('popup1');
+      popup.appendChild(node);
+      console.log("message appended");
+    }); //end error catch
+    console.log(promise);
+
+      
+        console.log("it ran");
+       // firebase.auth().onAuthStateChanged(firebaseUser => {
+      promise.then(function() {
+       // if (firebaseUser) {
+           
+
+    console.log("new popup should be open");
+      //$(".popup-overlay, .popup-content").removeClass("active");
+      //$(".popup-overlay2, .popup-content2").addClass("active");
+      geturl(email);
+      location.href = '/qrdisplay';
+    
+ 
+        //} //end if statement
+        }); //end on auth state changed
+      
+    	
+
+
+      }
